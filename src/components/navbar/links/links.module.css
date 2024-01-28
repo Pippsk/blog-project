@@ -1,0 +1,15 @@
+.links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logout {
+  background-color: var(--btn);
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--textSoft);
+  border: none;
+  border-radius: 10px;
+}
