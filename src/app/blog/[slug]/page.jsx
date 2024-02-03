@@ -6,21 +6,18 @@ import { getPost } from "@/lib/data";
 
 //FETCH DATA WITH API
 
-// const getSinglePost = async (slug) => {
-//   const res = await fetch(
-//     `https://jsonplaceholder.typicode.com/posts/${slug}`,
-//     {
-//       next: { revalidate: 3600 },
-//     }
-//   );
+const getSinglePost = async (slug) => {
+  const res = await fetch(`http://localhost:3000/blog/${slug}`, {
+    next: { revalidate: 3600 },
+  });
 
-//   if (!res.ok) {
-//     throw new Error("Something went wrong");
-//   }
+  if (!res.ok) {
+    throw new Error("Something went wrong");
+  }
 
-//   const data = await res.json();
-//   return data;
-// };
+  const data = await res.json();
+  return data;
+};
 
 export const generateMetadata = async ({ params }) => {
   const { slug } = params;
@@ -36,11 +33,11 @@ export const generateMetadata = async ({ params }) => {
 const SinglePostPage = async ({ params }) => {
   const { slug } = params;
   //FETCH DATA WITH API
-  // const post = await getSinglePost(slug);
+  const post = await getSinglePost(slug);
 
   //FETCH DATA WITHOUT API
 
-  const post = await getPost(slug);
+  // const post = await getPost(slug);
 
   return (
     <div className={styles.container}>
