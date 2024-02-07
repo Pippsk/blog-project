@@ -6,17 +6,14 @@ import { getPost } from "@/lib/data";
 
 //FETCH DATA WITH API
 
-const getSinglePost = async (slug) => {
-  const res = await fetch(`http://localhost:3000/blog/${slug}`, {
-    next: { revalidate: 3600 },
-  });
+const getData = async (slug) => {
+  const res = await fetch(`http://localhost:3000/api/blog/${slug}`);
 
   if (!res.ok) {
     throw new Error("Something went wrong");
   }
 
-  const data = await res.json();
-  return data;
+  return res.json();
 };
 
 export const generateMetadata = async ({ params }) => {
@@ -33,7 +30,7 @@ export const generateMetadata = async ({ params }) => {
 const SinglePostPage = async ({ params }) => {
   const { slug } = params;
   //FETCH DATA WITH API
-  const post = await getSinglePost(slug);
+  const post = await getData(slug);
 
   //FETCH DATA WITHOUT API
 
